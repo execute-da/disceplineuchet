@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить оценку{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Добавить оценку для {{ student.name }}</h1>
+     {% if error %}
+    <div class="error">
+      <p class="error-message">{{ error }}</p>
+    </div>
+    {% endif %}
+    <form method="post">
+        <div class="form-group">
+        <label for="subject">Предмет:</label>
+        <input type="text" id="subject" name="subject" required>
+         </div>
+            <div class="form-group">
+        <label for="grade">Оценка:</label>
+        <input type="text" id="grade" name="grade" required>
+            </div>
+        <input type="submit" value="Добавить оценку" class="form-button">
+    </form>
+      <div class="nav-links">
+          <a href="{{ url_for('view_grades', student_id=student_id) }}">Назад к оценкам</a>
+       </div>
+</div>
+{% endblock %}

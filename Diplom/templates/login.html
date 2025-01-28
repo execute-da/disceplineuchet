@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Авторизация</h1>
+    {% if error %}
+    <div class="error">
+      <p class="error-message">{{ error }}</p>
+    </div>
+    {% endif %}
+    <form method="post">
+        <div class="form-group">
+            <label for="username">Имя пользователя:</label>
+             <input type="text" id="username" name="username" required>
+        </div>
+       <div class="form-group">
+           <label for="password">Пароль:</label>
+           <input type="password" id="password" name="password" required>
+       </div>
+        <input type="submit" value="Войти" class="form-button">
+    </form>
+        <a href="{{ url_for('register') }}">Зарегистрироваться</a>
+</div>
+</body>
+</html>

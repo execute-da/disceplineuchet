@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить группу{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Добавить группу</h1>
+     <form method="post">
+        <div class="form-group">
+           <label for="name">Название группы:</label><br>
+           <input type="text" id="name" name="name" required>
+        </div>
+       <input type="submit" value="Добавить" class="form-button">
+    </form>
+       <div class="nav-links">
+         <a href="{{ url_for('teacher_index') }}">Назад на панель</a>
+         </div>
+</div>
+{% endblock %}

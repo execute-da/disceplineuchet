@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить студента{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Добавить студента в группу</h1>
+    <form method="post">
+        <div class="form-group">
+          <label for="student_id">Номер зачетной книжки:</label>
+            <input type="text" id="student_id" name="student_id" required>
+         </div>
+        <div class="form-group">
+          <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+         <div class="form-group">
+          <label for="surname">Фамилия:</label>
+            <input type="text" id="surname" name="surname" required>
+         </div>
+        <input type="submit" value="Добавить" class="form-button">
+    </form>
+      <div class="nav-links">
+    <a href="{{ url_for('view_group', group_id = group_id) }}">Назад к группе</a>
+        </div>
+</div>
+{% endblock %}

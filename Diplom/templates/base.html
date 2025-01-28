@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    {% block head %}{% endblock %}
+</head>
+<body {% if theme == 'dark' %} class="dark-theme" {% endif %}  onload="checkTheme()">
+     <div class="top-bar">
+          <div>
+              <a href="{{ url_for('toggle_theme') }}"  id="theme-toggle-button" class="theme-toggle-button">
+               {% if theme == 'dark' %}Дневная тема{% else %}Ночная тема{% endif %}
+             </a>
+        </div>
+         <div>
+             {% if username %}
+             <span style="color:white">Добро пожаловать, {{ username }}!</span>
+             {% endif %}
+             <a href="{{ url_for('change_password') }}">Сменить пароль</a>
+           <a href="{{ url_for('logout') }}">Выйти</a>
+         </div>
+    </div>
+        {% block content %}{% endblock %}
+<script>
+    function checkTheme() {
+            if (sessionStorage.getItem('theme') === 'dark') {
+              document.body.classList.add('dark-theme');
+            }
+
+        }
+    document.getElementById('theme-toggle-button').addEventListener('click', function(event) {
+            event.preventDefault();
+         fetch('{{ url_for("toggle_theme") }}')
+      .then(() => {
+        document.body.classList.toggle('dark-theme');
+        if(document.body.classList.contains('dark-theme')){
+           sessionStorage.setItem('theme','dark');
+        }
+         else {
+               sessionStorage.setItem('theme','light');
+        }
+          var button = document.getElementById("theme-toggle-button");
+      if (button.innerText === 'Ночная тема') {
+        button.innerText = 'Дневная тема';
+      } else {
+         button.innerText = 'Ночная тема';
+      }
+
+      });
+
+});
+
+</script>
+</body>
+</html>

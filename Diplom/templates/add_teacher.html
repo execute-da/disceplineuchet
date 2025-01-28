@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить преподавателя{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Добавить преподавателя</h1>
+    {% if error %}
+     <div class="error">
+       <p class="error-message">{{ error }}</p>
+    </div>
+     {% endif %}
+     <form method="post">
+         <div class="form-group">
+         <label for="username">Логин:</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль:</label>
+             <input type="text" id="password" name="password" required>
+        </div>
+          <input type="submit" value="Добавить" class="form-button">
+     </form>
+    <div class="nav-links">
+    <a href="{{ url_for('teacher_index') }}">Назад на панель</a>
+        </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Панель администратора{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Панель администратора</h1>
+    <div class="nav-links">
+        <a href="{{ url_for('add_teacher') }}">Добавить преподавателя</a>
+    </div>
+     <h2>Список преподавателей</h2>
+    <ul>
+       {% for teacher in teachers %}
+        <li>
+           <div>
+            {{ teacher.username }}
+           </div>
+          <div>
+           <a href="{{ url_for('delete_teacher', teacher_id=teacher.id) }}"  onclick="return confirm('Вы уверены, что хотите удалить преподавателя?')" class="form-button small-button delete-button">Удалить</a>
+          </div>
+        </li>
+       {% endfor %}
+    </ul>
+</div>
+{% endblock %}
